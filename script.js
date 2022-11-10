@@ -1,11 +1,16 @@
 const input = document.querySelector("input");
 const button = document.querySelector("button");
 
+const boxData = document.querySelector("#weather-data");
+const boxCloud = document.querySelector("#box-cloud");
 const weekDay = document.querySelector("#week-day");
 const date = document.querySelector("#date");
+const cityName = document.querySelector("#city");
 const temperature = document.querySelector("#temp");
+const weatherInfo = document.querySelector("#weather-info");
 const wings = document.querySelector("#wing");
 const humidity = document.querySelector("#humidity");
+
 
 button.addEventListener("click", ()=>{
     if(!input.value) alert("Write the name of city");
@@ -48,5 +53,30 @@ async function getDataApi(){
 
 
 function WriteData(data){
-    
+    const NEW_DATE = new Date();
+    weekDay.innerText = correction(String(NEW_DATE.getDay()));
+    date.innerText = `${correction(NEW_DATE.getDate())}/${correction(NEW_DATE.getMonth()) + 1}/${NEW_DATE.getFullYear()}`
+    cityName.innerText = data.name
+    temperature.innerText = Math.floor(Number(data.main.temp) - 273) + "°C";
+    weatherInfo.innerText = data.weather[0].description[0].toUpperCase() + data.weather[0].description.substring(1)
+    wings.innerText = data.wind.speed + " km/h"
+    humidity.innerText = data.main.humidity + "%"
+    console.log(boxData)
+    boxCloud.classList.add("d-none")
+    boxData.classList.remove("d-none")
+    boxData.classList.add("d-flex")
+}
+
+function correction(d){
+    // corrigir data e dia da semana
+    if(d === Number(d)) {return d > 10 ? "0" + d : d}
+    else{
+         if(d === "0") return "Sun |"
+         if(d === "1") return "Mon |"
+         if(d === "2") return "Tue |"
+         if(d === "3") return "Wed |"
+         if(d === "4") return "Thu |"
+         if(d === "5") return "Fri |"
+         if(d === "6") return "Sat |"
+        }                    
 }
