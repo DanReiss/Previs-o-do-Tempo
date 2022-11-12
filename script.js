@@ -10,23 +10,30 @@ const temperature = document.querySelector("#temp");
 const weatherInfo = document.querySelector("#weather-info");
 const wings = document.querySelector("#wing");
 const humidity = document.querySelector("#humidity");
+const vivus = new Vivus('cloud', {
+    type: "oneByOne",
+    duration: 150,
+    animTimingFunction: Vivus.EASE,})
+
 
 
 button.addEventListener("click", ()=>{
-    if(!input.value) alert("Write the name of city");
+    if(!input.value) return alert("Write the name of city");
     getDataApi();
 });
 
 async function getDataApi(){
+        vivus.play(vivus.getStatus() === 'end' ? -1 : 1);
     let urlConverter = `http://api.openweathermap.org/geo/1.0/direct?q=${input.value}&limit=1&appid=1ae69d2648521811adfd39240947a721`
     try{
         await fetch(urlConverter)
         .then(res => res.json())
         .then(data => {
-            if(!data.cod && data.cod == "404"){
-                return alert("Local não encontrado!");
-            }
             input.value = '';
+            if(!data[0] || !data.cod && data.cod === "404" ){
+                vivus.finish();
+                return alert("Local não encontrado! Por favor escreva corretamente, não esqueça dos espaços!")
+            } 
             convert(data[0])
         })
     }catch(err){
@@ -49,6 +56,7 @@ async function getDataApi(){
         alert(err)
     };
     }
+    vivus.finish()
 };
 
 
@@ -64,7 +72,7 @@ function WriteData(data){
     console.log(boxData)
     boxCloud.classList.add("d-none")
     boxData.classList.remove("d-none")
-    boxData.classList.add("d-flex")
+    boxData.classList.add("d-grid")
 }
 
 function correction(d){
