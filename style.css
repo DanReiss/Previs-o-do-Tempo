@@ -1,0 +1,37 @@
+.centered{
+    font-size: 1.4rem;
+    width: 32rem;
+    height: 25rem;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    animation: show 1s;
+}
+
+.icons{
+    width: 25px;
+    height: 25px;
+    display: block;
+}
+
+#weather-data{
+    animation: show 1s;
+}
+
+@keyframes show {
+    0%{
+        filter: opacity(0);
+    }
+    100%{
+        filter: opacity(1);
+    }
+}
+
+@media (max-width: 550px) {
+    .centered{
+        text-align: center;
+        width: 95%;
+        height: 25rem;
+    }
+}
