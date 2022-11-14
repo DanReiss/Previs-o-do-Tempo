@@ -104,10 +104,7 @@ function weatherImage(info){
         case "Clear sky":
                 weatherImg.setAttribute('src', './assets/clear.svg')
             break;
-        case "":
-            break;
-        case "":
-            break;
-    }
+        default:weatherImg.setAttribute('src', './assets/cloudy.svg')
+    }   
     
 }
