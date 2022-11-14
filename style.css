@@ -1,7 +1,11 @@
+#city, #box-wing, #box-humidity{
+    white-space: nowrap;
+}
+
 .centered{
     font-size: 1.4rem;
     width: 32rem;
-    height: 25rem;
+    height: 22rem;
     top: 0;
     right: 0;
     left: 0;
@@ -19,6 +23,10 @@
     animation: show 1s;
 }
 
+#weather-image{
+    width: 15rem;
+}
+
 @keyframes show {
     0%{
         filter: opacity(0);
@@ -32,6 +40,9 @@
     .centered{
         text-align: center;
         width: 95%;
-        height: 25rem;
+        height: 18rem;
+    }
+    #weather-image{
+        width: 10rem;
     }
 }

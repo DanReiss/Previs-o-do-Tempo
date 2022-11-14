@@ -8,6 +8,7 @@ const date = document.querySelector("#date");
 const cityName = document.querySelector("#city");
 const temperature = document.querySelector("#temp");
 const weatherInfo = document.querySelector("#weather-info");
+const weatherImg = document.querySelector("#weather-image")
 const wings = document.querySelector("#wing");
 const humidity = document.querySelector("#humidity");
 const vivus = new Vivus('cloud', {
@@ -61,15 +62,15 @@ async function getDataApi(){
 
 
 function WriteData(data){
-    const NEW_DATE = new Date();
-    weekDay.innerText = correction(String(NEW_DATE.getDay()));
-    date.innerText = `${correction(NEW_DATE.getDate())}/${correction(NEW_DATE.getMonth()) + 1}/${NEW_DATE.getFullYear()}`
+    // const NEW_DATE = new Date();
+    // weekDay.innerText = correction(String(NEW_DATE.getDay()));
+    // date.innerText = `${correction(NEW_DATE.getDate())}/${correction(NEW_DATE.getMonth()) + 1}/${NEW_DATE.getFullYear()}`
     cityName.innerText = data.name
     temperature.innerText = Math.floor(Number(data.main.temp) - 273) + "°C";
     weatherInfo.innerText = data.weather[0].description[0].toUpperCase() + data.weather[0].description.substring(1)
     wings.innerText = data.wind.speed + " km/h"
+    weatherImage(weatherInfo.innerText);
     humidity.innerText = data.main.humidity + "%"
-    console.log(boxData)
     boxCloud.classList.add("d-none")
     boxData.classList.remove("d-none")
     boxData.classList.add("d-grid")
@@ -77,7 +78,7 @@ function WriteData(data){
 
 function correction(d){
     // corrigir data e dia da semana
-    if(d === Number(d)) {return d > 10 ? "0" + d : d}
+    if(d === Number(d)) {return d < 10 ? "0" + d : d}
     else{
          if(d === "0") return "Sun |"
          if(d === "1") return "Mon |"
@@ -87,4 +88,26 @@ function correction(d){
          if(d === "5") return "Fri |"
          if(d === "6") return "Sat |"
         }                    
+}
+
+function weatherImage(info){
+    switch(String(info)){
+        case "Broken clouds":
+            weatherImg.setAttribute('src', './assets/cloudy.svg')
+            break;
+        case "Overcast clouds":
+            weatherImg.setAttribute('src', './assets/overclouds.svg')
+            break;
+        case "Fog":
+            weatherImg.setAttribute('src', './assets/cloudy.svg')
+            break;
+        case "Clear sky":
+                weatherImg.setAttribute('src', './assets/clear.svg')
+            break;
+        case "":
+            break;
+        case "":
+            break;
+    }
+    
 }
