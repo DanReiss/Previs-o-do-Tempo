@@ -102,9 +102,14 @@ function weatherImage(info){
             weatherImg.setAttribute('src', './assets/cloudy.svg')
             break;
         case "Clear sky":
-                weatherImg.setAttribute('src', './assets/clear.svg')
+            weatherImg.setAttribute('src', './assets/clear.svg')
             break;
-        default:weatherImg.setAttribute('src', './assets/cloudy.svg')
+        case "Light rain":
+            weatherImg.setAttribute('src', './assets/heaverain.svg')
+            break;
+        default: // adicionar mais cases !!
+             weatherImg.setAttribute('src', './assets/cloudy.svg')
+            break;
     }   
     
 }
