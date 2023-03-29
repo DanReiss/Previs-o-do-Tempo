@@ -13,7 +13,7 @@ const humidity = document.querySelector("#humidity");
 const vivus = new Vivus('cloud', {
     type: "oneByOne",
     duration: 150,
-    animTimingFunction: vivus.EASE,
+    animTimingFunction: Vivus.EASE,
 })
 
 const weatherOptions = [
@@ -80,20 +80,6 @@ function WriteData(data){
     boxCloud.classList.add("d-none")
     boxData.classList.remove("d-none")
     boxData.classList.add("d-grid")
-}
-
-function correction(d){
-    // corrigir data e dia da semana
-    if(d === Number(d)) {return d < 10 ? "0" + d : d}
-    else{
-         if(d === "0") return "Sun |"
-         if(d === "1") return "Mon |"
-         if(d === "2") return "Tue |"
-         if(d === "3") return "Wed |"
-         if(d === "4") return "Thu |"
-         if(d === "5") return "Fri |"
-         if(d === "6") return "Sat |"
-        }                    
 }
 
 function renderWeatherImage(type){
