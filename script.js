@@ -13,7 +13,8 @@ const humidity = document.querySelector("#humidity");
 const vivus = new Vivus('cloud', {
     type: "oneByOne",
     duration: 150,
-    animTimingFunction: Vivus.EASE,})
+    animTimingFunction: vivus.EASE,
+})
 
 const weatherOptions = [
     {name: "Broken clouds", src: "./assets/cloudy.svg"},
