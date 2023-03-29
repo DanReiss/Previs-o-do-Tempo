@@ -8,7 +8,6 @@ const date = document.querySelector("#date");
 const cityName = document.querySelector("#city");
 const temperature = document.querySelector("#temp");
 const weatherInfo = document.querySelector("#weather-info");
-const weatherImg = document.querySelector("#weather-image")
 const wings = document.querySelector("#wing");
 const humidity = document.querySelector("#humidity");
 const vivus = new Vivus('cloud', {
@@ -16,7 +15,14 @@ const vivus = new Vivus('cloud', {
     duration: 150,
     animTimingFunction: Vivus.EASE,})
 
-
+const weatherOptions = [
+    {name: "Broken clouds", src: "./assets/cloudy.svg"},
+    {name: "Overcast clouds", src: "./assets/overclouds.svg"},
+    {name: "Fog", src: "./assets/cloudy.svg"},
+    {name: "Clear sky", src: "./assets/clear.svg"},
+    {name: "Light rain", src: "./assets/clear.svg"},
+    {name: "Thunderstorm with light rain", src: "./assets/heaverain.svg"}
+]
 
 button.addEventListener("click", ()=>{
     if(!input.value) return alert("Write the name of city");
@@ -50,7 +56,6 @@ async function getDataApi(){
             if(!data.cod && data.cod == "404"){
                 return alert("Local não encontrado!");
             }
-            console.log(data)
             WriteData(data);
         })
     }catch(err){
@@ -69,7 +74,7 @@ function WriteData(data){
     temperature.innerText = Math.floor(Number(data.main.temp) - 273) + "°C";
     weatherInfo.innerText = data.weather[0].description[0].toUpperCase() + data.weather[0].description.substring(1)
     wings.innerText = data.wind.speed + " km/h"
-    weatherImage(weatherInfo.innerText);
+    renderWeatherImage(weatherInfo.innerText);
     humidity.innerText = data.main.humidity + "%"
     boxCloud.classList.add("d-none")
     boxData.classList.remove("d-none")
@@ -90,26 +95,10 @@ function correction(d){
         }                    
 }
 
-function weatherImage(info){
-    switch(String(info)){
-        case "Broken clouds":
-            weatherImg.setAttribute('src', './assets/cloudy.svg')
-            break;
-        case "Overcast clouds":
-            weatherImg.setAttribute('src', './assets/overclouds.svg')
-            break;
-        case "Fog":
-            weatherImg.setAttribute('src', './assets/cloudy.svg')
-            break;
-        case "Clear sky":
-            weatherImg.setAttribute('src', './assets/clear.svg')
-            break;
-        case "Light rain":
-            weatherImg.setAttribute('src', './assets/heaverain.svg')
-            break;
-        default: // adicionar mais cases !!
-             weatherImg.setAttribute('src', './assets/cloudy.svg')
-            break;
-    }   
-    
+function renderWeatherImage(type){
+ for(let option of weatherOptions){
+    if(option.name === type){
+      document.querySelector("#weather-image").setAttribute("src", option.src)
+    }
+ }
 }
