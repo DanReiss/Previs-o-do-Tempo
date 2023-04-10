@@ -17,6 +17,7 @@ const vivus = new Vivus('cloud', {
 })
 
 const weatherOptions = [
+    {name: "Scattered clouds", src: "./assets/cloudy.svg"},
     {name: "Broken clouds", src: "./assets/cloudy.svg"},
     {name: "Overcast clouds", src: "./assets/overclouds.svg"},
     {name: "Fog", src: "./assets/cloudy.svg"},
@@ -83,9 +84,11 @@ function WriteData(data){
 }
 
 function renderWeatherImage(type){
- for(let option of weatherOptions){
-    if(option.name === type){
-      document.querySelector("#weather-image").setAttribute("src", option.src)
+    for(let option of weatherOptions){
+        if(option.name === type){
+            document.querySelector("#weather-image").setAttribute("src", option.src)
+            return;
+        }
     }
- }
+    document.querySelector("#weather-image").setAttribute("src", "./assets/cloudy.svg")
 }
