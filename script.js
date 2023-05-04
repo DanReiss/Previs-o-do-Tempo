@@ -33,7 +33,7 @@ button.addEventListener("click", ()=>{
 
 async function getDataApi(){
         vivus.play(vivus.getStatus() === 'end' ? -1 : 1);
-    let urlConverter = `http://api.openweathermap.org/geo/1.0/direct?q=${input.value}&limit=1&appid=1ae69d2648521811adfd39240947a721`
+    let urlConverter = `https://api.openweathermap.org/geo/1.0/direct?q=${input.value}&limit=1&appid=1ae69d2648521811adfd39240947a721`
     try{
         await fetch(urlConverter)
         .then(res => res.json())
