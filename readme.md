@@ -2,8 +2,8 @@
 
 ## Sobre
 
-- Projeto de um aplicação front-end web para consultar o clima de qualquer cidade
-- Foi feito usando HTML, CSS, JS, Bootstrap e integração com a [API Open Weather- Current weather data](https://openweathermap.org/current "Site da API")
+- Projeto de uma aplicação Front-end Web para consultar o clima de qualquer cidade
+- Produzido usando HTML, CSS, JS, Bootstrap e integração com a [API Open Weather- Current weather data](https://openweathermap.org/current "Site da API")
 - A API retorna a cidade com a melhor correspondência com o nome digitado
 
 ## Preview
