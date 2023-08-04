@@ -1,52 +1,55 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Check your city's weather forecast">
-    <title>Weather Anywhere!</title>
-    <link rel="shortcut icon" href="./assets/rg1024-Set-of-soft-clouds.svg" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="./style.css">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Check your city's weather forecast">
+	<title>Weather Anywhere!</title>
+	<link rel="shortcut icon" href="./assets/rg1024-Set-of-soft-clouds.svg" type="image/x-icon">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+	<link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <main class="border border-info rounded centered bg-light p-2 p-md-4 m-1 position-absolute m-auto">
-        <div class="d-flex">
-            <label class="m-1 text-secondary font-weight-light" for="city-name">City:</label>
-            <input class="m-1 form-control" name="city-name" type="text" placeholder="Ex: New York">
-            <button class="m-1 btn btn-info text-light" type="submit">Search</button>      
-        </div>
-        <div class="py-5 d-flex flex-row justify-content-center align-items-center" id="box-cloud">
-            <svg id="cloud" width="170px" height="170px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 5C14.7614 5 17 7.23858 17 10V11M7 11V10C7 8.87418 7.37209 7.83526 8 6.99951M7 11C4.79086 11 3 12.7909 3 15C3 17.2091 4.79086 19 7 19M7 11C8.01445 11 8.94069 11.3776 9.64582 12M17 19C19.2091 19 21 17.2091 21 15C21 13.8053 20.4762 12.7329 19.6458 12" stroke="#0DCAF0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </div>
-        <div id="weather-data" class="d-none m-3">
-            <!-- <div class="text-start">
-                <span id="week-day" class="text-info"></span>
-                <span id="date"></span>
-            </div> -->
-            <div class="row">
-                <div class="column col-6 d-flex flex-column justify-content-evenly">
-                    <h2 id="city"></h2>
-                    <h2 id="temp"></h2>
-                    <span class="text-info" id="weather-info"></span>
-                    <div id="box-wing" class="d-flex flex-row align-items-center justify-content-center justify-content-sm-start">
-                        <span id="wing"></span>
-                        <img class="mx-md-3 icons" src="./assets/wind-svgrepo-com.svg" alt="">
-                    </div>
-                    <div id="box-humidity" class="d-flex flex-row align-items-center justify-content-center justify-content-sm-start">
-                        <span id="humidity"></span>
-                        <img class="mx-md-3 icons" src="./assets/humidity-svgrepo-com.svg"alt="">
-                    </div>
-                </div>
-                <div class="column col-6 d-flex justify-content-center align-items-center">
-                        <img id="weather-image" alt="image weather">
-                </div>
-            </div>
-        </div>
-    </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vivus/0.4.6/vivus.js" integrity="sha512-BrgqimUUFt0cZGYfnklvKuYlCM0bw+ZAIaAlR3V/wpsEJBFWd3sXzmPZGXoMdFdkhWn29BUpJS4PDnb2su7hdQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script></body>
-    <script src="./script.js"></script>
+	<main class="border border-info rounded centered bg-light p-2 p-md-4 m-1 position-absolute m-auto">
+		<form id="search-form" class="d-flex">
+			<label class="m-1 text-secondary font-weight-light">City:</label>
+			<input class="m-1 form-control" name="city-name" type="text" placeholder="Ex: New York">
+			<button class="m-1 btn btn-info text-light" type="submit">Search</button>
+		</form>
+		<div class="py-5 d-flex flex-row justify-content-center align-items-center" id="box-cloud">
+			<svg id="cloud" width="170px" height="170px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path
+					d="M12 5C14.7614 5 17 7.23858 17 10V11M7 11V10C7 8.87418 7.37209 7.83526 8 6.99951M7 11C4.79086 11 3 12.7909 3 15C3 17.2091 4.79086 19 7 19M7 11C8.01445 11 8.94069 11.3776 9.64582 12M17 19C19.2091 19 21 17.2091 21 15C21 13.8053 20.4762 12.7329 19.6458 12"
+					stroke="#0DCAF0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+			</svg>
+		</div>
+		<div id="weather-data" class="d-none m-3">
+			<div class="row">
+				<div class="column col-6 d-flex flex-column justify-content-evenly">
+					<h2 id="city"></h2>
+					<h2 id="temp"></h2>
+					<span class="text-info" id="weather-info"></span>
+					<div id="box-wing" class="d-flex flex-row align-items-center justify-content-center justify-content-sm-start">
+						<span id="wing"></span>
+						<img class="mx-md-3 icons" src="./assets/wind-svgrepo-com.svg" alt="">
+					</div>
+					<div id="box-humidity"
+						class="d-flex flex-row align-items-center justify-content-center justify-content-sm-start">
+						<span id="humidity"></span>
+						<img class="mx-md-3 icons" src="./assets/humidity-svgrepo-com.svg" alt="">
+					</div>
+				</div>
+				<div class="column col-6 d-flex justify-content-center align-items-center">
+					<img id="weather-image" alt="image weather">
+				</div>
+			</div>
+		</div>
+	</main>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vivus/0.4.6/vivus.js"
+		integrity="sha512-BrgqimUUFt0cZGYfnklvKuYlCM0bw+ZAIaAlR3V/wpsEJBFWd3sXzmPZGXoMdFdkhWn29BUpJS4PDnb2su7hdQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="./script.js"></script>
+</body>
 </html>
