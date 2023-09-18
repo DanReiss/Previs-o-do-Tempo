@@ -16,6 +16,9 @@ const vivus = new Vivus('cloud', {
 	animTimingFunction: Vivus.EASE,
 })
 
+var d = new Date();
+var utcDate = d.getTime() + (d.getTimezoneOffset() * 60000);
+
 const weatherOptions = [
 	{ name: "Scattered clouds", src: "./assets/cloudy.svg" },
 	{ name: "Broken clouds", src: "./assets/cloudy.svg" },
@@ -25,6 +28,13 @@ const weatherOptions = [
 	{ name: "Light rain", src: "./assets/rain.svg" },
 	{ name: "Thunderstorm with light rain", src: "./assets/heaverain.svg" }
 ]
+
+const convertTime = (num) => num < 10 ? `0${num}` : num;
+
+function convertDay(dayNum){
+	const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+	return days[dayNum];
+}
 
 form.addEventListener("submit", (e) => {
 	e.preventDefault();
@@ -69,6 +79,11 @@ function WriteData(data) {
 	renderWeatherImage(weatherInfo.innerText);
 	boxCloud.classList.add("d-none");
 	boxData.classList.replace("d-none", "d-grid");
+
+	const cityDate = new Date(utcDate + (data.timezone * 1000));
+	const hours = convertTime(cityDate.getHours());
+	const minutes = convertTime(cityDate.getMinutes());
+	date.innerText = `${convertDay(cityDate.getDay())}, ${hours}:${minutes}`;
 }
 
 function renderWeatherImage(type) {
