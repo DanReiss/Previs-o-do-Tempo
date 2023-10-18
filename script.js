@@ -8,7 +8,7 @@ const date = boxData.querySelector("#date");
 const cityName = boxData.querySelector("#city");
 const temperature = boxData.querySelector("#temp");
 const weatherInfo = boxData.querySelector("#weather-info");
-const wings = boxData.querySelector("#wing");
+const wind = boxData.querySelector("#wind");
 const humidity = boxData.querySelector("#humidity");
 const vivus = new Vivus('cloud', {
 	type: "oneByOne",
@@ -74,7 +74,7 @@ function WriteData(data) {
 	cityName.innerText = data.name;
 	temperature.innerText = Math.floor(Number(data.main.temp) - 273) + "°C";
 	weatherInfo.innerText = data.weather[0].description[0].toUpperCase() + data.weather[0].description.substring(1);
-	wings.innerText = data.wind.speed + " km/h";
+	wind.innerText = data.wind.speed + " km/h";
 	humidity.innerText = data.main.humidity + "%";
 	renderWeatherImage(weatherInfo.innerText);
 	boxCloud.classList.add("d-none");

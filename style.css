@@ -1,4 +1,10 @@
-#city, #box-wing, #box-humidity{
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#city, #box-wind, #box-humidity{
     white-space: nowrap;
 }
 
@@ -40,7 +46,6 @@
     .centered{
         text-align: center;
         width: 95%;
-        height: 18rem;
     }
     #weather-image{
         width: 10rem;
